@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 
 public class DruidConfig {
 	@ConfigurationProperties(prefix = "spring.datasource")
@@ -21,7 +22,7 @@ public class DruidConfig {
 	public DataSource dataSource() {
 		return new DruidDataSource();
 	}
-
+	//StatViewServlet注册
 	public ServletRegistrationBean<StatViewServlet> statViewServlet() {
 		ServletRegistrationBean<StatViewServlet> bean = new ServletRegistrationBean<StatViewServlet>(
 				new StatViewServlet(), "/druid/*");
@@ -33,7 +34,7 @@ public class DruidConfig {
 		bean.setInitParameters(initParams);
 		return bean;
 	}
-
+	//WebStatFilter注册
 	@Bean
 	public FilterRegistrationBean<Filter> webStatFilter() {
 		FilterRegistrationBean<Filter> bean = new FilterRegistrationBean<>();
@@ -43,5 +44,13 @@ public class DruidConfig {
 		bean.setInitParameters(initParams);
 		bean.setUrlPatterns(Arrays.asList("/*"));
 		return bean;
+	}
+	/**
+	 * mybatisplus 分页插件启用
+	 * @return
+	 */
+	@Bean
+	public PaginationInterceptor paginationInterceptor() {
+		return new PaginationInterceptor();
 	}
 }
