@@ -29,8 +29,8 @@ public class MyBatisPlusGenerator {
         String projectPath = System.getProperty("user.dir");
         gc.setOutputDir(projectPath + "/src/main/java");
         gc.setAuthor("hm");//Mapper,Service类注解中显示创建人信息
-        //gc.setBaseColumnList(true); //在Mapper.xml文件中是否生成公用SQL代码段
-        //gc.setBaseResultMap(true);  //在Mapper.xml文件中是否生成公用返回集合ResultMap
+        gc.setBaseColumnList(true); //在Mapper.xml文件中是否生成公用SQL代码段
+        gc.setBaseResultMap(true);  //在Mapper.xml文件中是否生成公用返回集合ResultMap
         gc.setOpen(false);  //文件生成完毕后，是否需要打开所在路径
         mpg.setGlobalConfig(gc);
 

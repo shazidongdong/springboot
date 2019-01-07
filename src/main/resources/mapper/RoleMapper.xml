@@ -6,12 +6,11 @@
     <resultMap id="BaseResultMap" type="com.hm.entity.Role">
         <id column="id" property="id" />
         <result column="name" property="name" />
-        <result column="permission_id" property="permissionId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, name, permission_id
+        id, name
     </sql>
 
 </mapper>

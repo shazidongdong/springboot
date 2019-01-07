@@ -1,11 +1,13 @@
 spring:
   profiles:    active:    - dev
 
-mybatis:  mapper-locations: classpath:mapper/*.xml
-  config-location: classpath:mapper/config/mybatis-config.xml
-  type-aliases-package: com.hm.domain
-    
+mybatis-plus:  mapper-locations: classpath:mapper/*.xml
+#  config-location: classpath:mapper/config/mybatis-config.xml
+  configuration:    auto-mapping-behavior: full    map-underscore-to-camel-case: true
+#  type-aliases-package: com.hm.entity
+    #配置SpringBoot默认的日志环境，开启打印SQL语句的Debug模式，语法：logging.level.<mapper所在包名>=debug
 
+logging:  level:    com.hm.mapper: debug
 ---   
 spring:
   profiles: dev
