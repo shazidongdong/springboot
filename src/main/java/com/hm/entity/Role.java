@@ -1,21 +1,20 @@
 package com.hm.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.hm.entity.UserRole.UserRoleBuilder;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import lombok.experimental.Tolerate;
 
 /**
  * <p>
@@ -34,6 +33,10 @@ import lombok.experimental.Accessors;
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Tolerate
+	public Role() {
+		super();
+	}
 
 	@TableId(value = "id", type = IdType.AUTO)
 	private Integer id;
@@ -41,7 +44,7 @@ public class Role implements Serializable {
 	@TableField("name")
 	private String name;
 	
-	private List<User> users = new ArrayList<User>();
+//	private List<User> users = new ArrayList<User>();
 	
     private List<Permission> permissions = new ArrayList<Permission>();
 

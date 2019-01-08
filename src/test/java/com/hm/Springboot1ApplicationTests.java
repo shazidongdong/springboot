@@ -16,7 +16,6 @@ import com.hm.entity.User;
 import com.hm.service.IPermissionService;
 import com.hm.service.IRoleService;
 import com.hm.service.IUserService;
-import com.hm.service.impl.PermissionServiceImpl;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -62,12 +61,12 @@ public class Springboot1ApplicationTests {
 	public void getALLUserAndRole() {
 		System.out.println("11");
 		List<User> list = UserService.getALLUserAndRole();
-//		for (User user : list) {
-//			System.out.println("id:" + user.getId());
-//			List<Role> roles = user.getRoles();
-//			for (Role role : roles) {
-//				System.out.println("role:" + role.getName());
-//			}
-//		}
+		for (User user : list) {
+			System.out.println("id:" + user.getId());
+			List<Role> roles = user.getRoles();
+			for (Role role : roles) {
+				System.out.println("role:" + role.getName());
+			}
+		}
 	}
 }

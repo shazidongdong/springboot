@@ -1,21 +1,21 @@
 package com.hm.entity;
 
-import com.baomidou.mybatisplus.annotation.TableName;
-import com.baomidou.mybatisplus.annotation.IdType;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import lombok.experimental.Tolerate;
 
 /**
  * <p>
@@ -34,6 +34,23 @@ import lombok.experimental.Accessors;
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Tolerate
+	public User() {}
+	
+	public User(Integer id, String username, String realname, String password, String tel, String email,
+			LocalDate createTime, LocalDate updateTime, Integer status, List<Role> roles) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.realname = realname;
+		this.password = password;
+		this.tel = tel;
+		this.email = email;
+		this.createTime = createTime;
+		this.updateTime = updateTime;
+		this.status = status;
+		this.roles = roles;
+	}
 
 	@TableId(value = "id", type = IdType.AUTO)
 	private Integer id;

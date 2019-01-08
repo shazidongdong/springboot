@@ -22,14 +22,14 @@
 	</sql>
 	
 	<resultMap type="com.hm.entity.User" id="userRoleList" extends="BaseResultMap">
-		<collection property="roles" ofType="com.hm.entity.UserRole">
-			<id property="id" column="id"  javaType="java.lang.Integer"/>
+		<collection property="roles" ofType="com.hm.entity.Role">
+			<id property="id" column="r_id"  javaType="java.lang.Integer"/>
 			<result property="name" column="name"/>
 		</collection>
 	</resultMap>
 	
 	<select id="getALLUserAndRole" resultMap="userRoleList">
-		select u.*,r.* from
+		select u.*,r.id r_id ,r.name  from
 		t_user u left join user_role ur on u.id = ur.user_id
 		left join t_role r
 		on r.id = ur.role_id;

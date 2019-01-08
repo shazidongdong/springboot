@@ -1,13 +1,14 @@
 package com.hm.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hm.entity.User;
 import com.hm.mapper.UserMapper;
 import com.hm.service.IUserService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -19,10 +20,12 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
+	@Autowired
+	UserMapper userMapper;
 	
 	@Override
 	public List<User> getALLUserAndRole() {
-		List<User> allUserAndRole = getALLUserAndRole();
+		List<User> allUserAndRole = userMapper.getALLUserAndRole();
 	 	return allUserAndRole;
 	}
 
