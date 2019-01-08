@@ -29,4 +29,10 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	 	return allUserAndRole;
 	}
 
+	@Override
+	public User findByName(String name) {
+		return userMapper.findByName(name);
+		
+	}
+
 }

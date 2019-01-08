@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hm.mapper.UserMapper">
+	<sql id="where">
+		<if test="userName !=null and userName != '' ">
+			AND u.userName = #{userName, jdbcType=VARCHAR}
+		</if>
+		<if test="realName != null and realName != '' ">
+			AND u.realName LIKE CONCAT(CONCAT('%', #{realName,
+			jdbcType=VARCHAR}),'%')
+		</if>
+		<if test="tel != null ">
+			AND u.tel = #{tel, jdbcType=VARCHAR}
+		</if>
+		<if test="email != null and email != '' ">
+			AND u.email = #{email, jdbcType=VARCHAR}
+		</if>
+		<if test="status != null and status !=' ' ">
+			AND u.status = #{status, jdbcType=VARCHAR}
+		</if>
 
+	</sql>
 	<!-- 通用查询映射结果 -->
 	<resultMap id="BaseResultMap" type="com.hm.entity.User">
 		<id column="id" property="id" />
@@ -17,23 +35,44 @@
 
 	<!-- 通用查询结果列 -->
 	<sql id="Base_Column_List">
-		id, username, realname, password, tel, email, createTime, updateTime,
+		id, username, realname, password, tel, email, createTime,
+		updateTime,
 		status
 	</sql>
-	
-	<resultMap type="com.hm.entity.User" id="userRoleList" extends="BaseResultMap">
+
+	<resultMap type="com.hm.entity.User" id="userRoleList"
+		extends="BaseResultMap">
 		<collection property="roles" ofType="com.hm.entity.Role">
-			<id property="id" column="r_id"  javaType="java.lang.Integer"/>
-			<result property="name" column="name"/>
+			<id property="id" column="r_id" javaType="java.lang.Integer" />
+			<result property="name" column="name" />
 		</collection>
 	</resultMap>
-	
+
 	<select id="getALLUserAndRole" resultMap="userRoleList">
-		select u.*,r.id r_id ,r.name  from
-		t_user u left join user_role ur on u.id = ur.user_id
-		left join t_role r
-		on r.id = ur.role_id;
+		select u.*,r.id r_id
+		,r.name from
+		t_user u left join user_role ur on
+		u.id = ur.user_id
+		left
+		join t_role r
+		on r.id = ur.role_id
+		<include refid="where"></include>
 	</select>
-	
-	
+
+	<select id="findByName" resultMap="userRoleList"
+		parameterType="String">
+		select u.*,r.id r_id ,r.name from
+		t_user u left join
+		user_role ur on u.id = ur.user_id
+		left join t_role r
+		on r.id =ur.role_id
+		where u.username = #{name}
+	</select>
+
+	<select id="findPermissionByid">
+		select p.* from t_user u,user_role ur, t_role
+		r,role_permission rp, t_permission p where u.id =ur.user_id and r.id
+		=ur.role_id and r.id =rp.role_id and rp.permission_id = p.id;
+	</select>
+
 </mapper>

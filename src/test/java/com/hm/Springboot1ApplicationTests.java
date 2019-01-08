@@ -69,4 +69,9 @@ public class Springboot1ApplicationTests {
 			}
 		}
 	}
+	@Test
+	public void findByInfo() {
+		User info = UserService.findByName("admin");
+		System.out.println(info.getPassword());
+	}
 }

@@ -1,10 +1,9 @@
 package com.hm.service;
 
-import com.hm.entity.User;
-
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hm.entity.User;
 
 /**
  * <p>
@@ -16,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 	public List<User> getALLUserAndRole();
+	
+	public User findByName(String name); 
 }

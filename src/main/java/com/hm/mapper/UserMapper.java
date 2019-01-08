@@ -1,10 +1,9 @@
 package com.hm.mapper;
 
-import com.hm.entity.User;
-
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hm.entity.User;
 
 /**
  * <p>
@@ -17,4 +16,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 public interface UserMapper extends BaseMapper<User> {
 	
 	public List<User> getALLUserAndRole();
+	
+	public User findByName(String name); 
 }
