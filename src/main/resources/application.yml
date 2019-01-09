@@ -1,6 +1,6 @@
 spring:
-  profiles:    active:    - dev
-
+  profiles:    active:    - dev  thymeleaf:    cache: false    prefix: classpath:/templates/
+    suffix: .html#  resources:#    static-locations:#    - classpath:/resources/, classpath:/static/ ,classpath:/templates/
 mybatis-plus:  mapper-locations: classpath:mapper/*.xml
 #  config-location: classpath:mapper/config/mybatis-config.xml
   configuration:    auto-mapping-behavior: full    map-underscore-to-camel-case: true
