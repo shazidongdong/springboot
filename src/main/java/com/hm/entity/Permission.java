@@ -12,6 +12,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
+import lombok.experimental.Tolerate;
 
 /**
  * <p>
@@ -30,6 +31,17 @@ import lombok.experimental.Accessors;
 public class Permission implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	@Tolerate
+	 public Permission() {
+		 
+	}
+	
+	@Tolerate
+	public Permission(String name, String resource) {
+		this.name = name;
+		this.resource = resource;
+	}
+
 
 	@TableId(value = "id", type = IdType.AUTO)
 	private Integer id;
@@ -45,5 +57,7 @@ public class Permission implements Serializable {
 
 	@TableField("menu_id")
 	private Long menuId;
+	
+	private Menu menu;
 
 }

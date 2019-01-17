@@ -74,4 +74,8 @@ public class Springboot1ApplicationTests {
 		User info = UserService.findByName("admin");
 		System.out.println(info.getPassword());
 	}
+	@Test
+	public void findMenuById() {
+		UserService.findMenuById(1);
+	}
 }

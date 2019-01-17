@@ -29,10 +29,13 @@ public class ShiroRealm  extends AuthorizingRealm{
 	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		//String username = (String) principals.fromRealm(getName()).iterator().next();
 		//获取登录用户信息
-		User user = (User) principals.getPrimaryPrincipal();
-		System.out.println(user.toString());
+		System.out.println(principals.toString());
+//		User user = (User) principals.getPrimaryPrincipal();
+		String username =  (String) principals.getPrimaryPrincipal();
 		//利用登录用户获取所有权限
+		User user = UserService.findByName(username);
 		List<Role> roles = user.getRoles();
 		HashSet<String> rolesSet = new HashSet<>();
 		for (Role role : roles) {
@@ -51,18 +54,18 @@ public class ShiroRealm  extends AuthorizingRealm{
 		UsernamePasswordToken upToken= (UsernamePasswordToken)token;
 		String username = upToken.getUsername();
 		System.out.println(username+"--------------------------------");
-		log.info("验证当前Subject时获取到token为：" + token.toString());
+		log.info("验证当前Subject时获取到token为：" + token.toString() +"-----");
 		User user = UserService.findByName(username);
 		//抛出异常
 		if(user ==null) {
 			throw new UnknownAccountException("用户不存在");
 		}
-		if(!upToken.getPassword().equals(user.getPassword())) {
-			throw new UnknownAccountException("输入错误");
-		}
+//		if(!upToken.getPassword().equals(user.getPassword())) {
+//			throw new UnknownAccountException("输入错误");
+//		}
 		//根据用户情况，来构建AuthenticationInfo对象并返回，一般实现类SimpleAuthenticationInfo
 		//认证实体信息，username或者对应用户实体对象 -----授权时获取当前对象
-		Object principal = user;
+		Object principal = user.getUsername();
 		//密码
 		Object credentials = user.getPassword();
 		//当前realm对象的name调用父类getName()即可

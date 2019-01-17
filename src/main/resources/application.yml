@@ -1,11 +1,3 @@
-boot:
-    cors:
-        addallowedheader: '*'
-        addallowedmethod: '*'
-        addallowedorigin: '*'
-
-
-
 spring:
   profiles:    active:    - dev  thymeleaf:    cache: false    prefix: classpath:/templates/
     suffix: .html
@@ -18,6 +10,14 @@ mybatis-plus:  mapper-locations: classpath:mapper/*.xml
     #配置SpringBoot默认的日志环境，开启打印SQL语句的Debug模式，语法：logging.level.<mapper所在包名>=debug
 
 logging:  level:    com.hm.mapper: debug
+    
+boot:
+    cors:
+        addallowedheader: '*'
+        addallowedmethod: '*'
+        addallowedorigin: '*'
+
+   
 ---   
 spring:
   profiles: dev

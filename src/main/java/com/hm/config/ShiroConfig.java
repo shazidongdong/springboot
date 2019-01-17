@@ -65,13 +65,14 @@ public class ShiroConfig {
 		filterChainDefinitionManager.put("/user/**", "authc,roles[user]");
 		filterChainDefinitionManager.put("/admin/**", "authc,roles[role0]");//authc 必须认证后访问
 		filterChainDefinitionManager.put("/login", "anon");
+		filterChainDefinitionManager.put("/getMenu", "anon");
 		filterChainDefinitionManager.put("/shiro/login", "anon");
 		filterChainDefinitionManager.put("/statistic/**", "anon");// 静态资源不拦截
 		filterChainDefinitionManager.put("/**", "authc,roles[user]");// 其他资源全部拦截
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
-		shiroFilterFactoryBean.setLoginUrl("/login");
-		shiroFilterFactoryBean.setSuccessUrl("/list");
-        shiroFilterFactoryBean.setUnauthorizedUrl("/login");
+//		shiroFilterFactoryBean.setLoginUrl("/login");
+//		shiroFilterFactoryBean.setSuccessUrl("/list");
+//        shiroFilterFactoryBean.setUnauthorizedUrl("/login");
         return shiroFilterFactoryBean;
 	}
 	   @Bean

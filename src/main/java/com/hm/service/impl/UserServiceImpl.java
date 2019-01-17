@@ -40,13 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	@Override
 	public List<Menu> findMenuById(Integer id) {
 		List<Menu> list = userMapper.findMenuById(id);
-		for (Menu menu : list) {
-			if(menu.getParentId()==null) {
-				List parentsList= new ArrayList<Menu>();
-				
-			}
-		}
-		return null;
+		return list;
 	}
 
 }

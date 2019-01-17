@@ -49,8 +49,8 @@
 	</resultMap>
 
 	<select id="getALLUserAndRole" resultMap="userRoleList">
-		select u.*,r.id r_id
-		,r.name from
+		select u.*,r.id r_id,r.name 
+		from
 		t_user u left join user_role ur on
 		u.id = ur.user_id
 		left
@@ -61,10 +61,13 @@
 
 	<select id="findByName" resultMap="userRoleList"
 		parameterType="String">
-		select u.*,r.id r_id ,r.name from
-		t_user u left join
+		<!-- select DISTINCT u.username ,u.password  -->
+		select u.*,r.id r_id,r.name 
+		from
+		t_user u 
+		join
 		user_role ur on u.id = ur.user_id
-		left join t_role r
+		join t_role r
 		on r.id =ur.role_id
 		where u.username = #{name}
 	</select>
@@ -75,10 +78,32 @@
 		=ur.role_id and r.id =rp.role_id and rp.permission_id = p.id;
 	</select>
 	
-	<select id="findMenuById" parameterType="INTEGER">
-		select m.* from t_user u,user_role ur, t_role
-		r,role_permission rp, t_permission p ,t_menu m where u.id =ur.user_id and r.id
-		=ur.role_id and r.id =rp.role_id and rp.permission_id = p.id and p.id = m.id ;
+	<select id="findMenuById" parameterType="INTEGER" resultMap="menuResultMap">
+		select DISTINCT 
+		m.id,m.menuName,m.url,parent.id pid,parent.menuName pname
+		from t_user u 
+		join user_role ur 
+		on u.id = ur.user_id
+		join t_role r
+		on  ur.role_id =r.id
+		join role_permission rp 
+		on r.id = rp.role_id
+		join t_permission p
+		on rp.permission_id = p.id
+		join t_menu m
+		on p.menu_id =m.id
+		join t_menu parent 
+		on m.parentId = parent.id
+		where u.id =#{id}
 	</select>
 	
+	<resultMap type="com.hm.entity.Menu" id="menuResultMap">
+		<id column="pid" property="id"></id>
+		<result column="pname" property="menuName"/>
+		<collection property="children" ofType="com.hm.entity.Menu" column="parentId">
+			<id column="id" property="id"/>
+			<result column="menuName" property="menuName"/>
+			<result column="url" property="url"/>
+		</collection>
+	</resultMap>
 </mapper>

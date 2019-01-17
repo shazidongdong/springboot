@@ -31,10 +31,19 @@ import lombok.experimental.Tolerate;
 public class Menu implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+	
     @Tolerate
     public Menu() {
-	}
 
+	}
+    
+    @Tolerate
+	public Menu(String menuName, String url, Menu parent) {
+		this.menuName = menuName;
+		this.url = url;
+		this.parent = parent;
+	}
 	@TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -43,9 +52,27 @@ public class Menu implements Serializable {
 
     @TableField("menuName")
     private String menuName;
-
+    
+    @TableField("url")
+    private String url;
+    
     @TableField("state")
     private Integer state;
+    /**
+     * 	上级菜单
+     */
+    private Menu parent;
+    
+    private List<Menu> children = new ArrayList<Menu>();
+    
+    public List<Menu> getChildren() {
+		if (children.size() == 0) {
+			return null;
+		}
+		return children;
+	}
 
-    private List<Menu> chidren = new ArrayList<Menu>();
+	public void setChildren(List<Menu> children) {
+		this.children = children;
+	}
 }
