@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hm.service.IloginService;
 
@@ -24,13 +25,13 @@ public class LoginController {
 			UsernamePasswordToken token = new UsernamePasswordToken(username, password);
 			token.setRememberMe(true);
 			try {
-				// 执行登录
+				// 执行登录 该token传递至realm中
 				currentUser.login(token);
 			} catch (AuthenticationException ae) {
 				System.out.println("失败" + ae.getMessage());
 			}
 		}
-
+		//重定向public、static文件夹下的list.html
 		return "redirect:/list.html";
 		// return "list";
 	}
@@ -45,5 +46,10 @@ public class LoginController {
 		System.out.println("1111111111");
 		loginService.date();
 		return "redirect:/list.html";
+	}
+	@GetMapping("/getMenu")
+	@ResponseBody
+	public String getMenu() {
+		return null;
 	}
 }

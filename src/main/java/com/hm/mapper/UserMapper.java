@@ -3,6 +3,7 @@ package com.hm.mapper;
 import java.util.List;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.hm.entity.Menu;
 import com.hm.entity.User;
 
 /**
@@ -18,4 +19,6 @@ public interface UserMapper extends BaseMapper<User> {
 	public List<User> getALLUserAndRole();
 	
 	public User findByName(String name); 
+	
+	public List<Menu> findMenuById(Integer id);
 }

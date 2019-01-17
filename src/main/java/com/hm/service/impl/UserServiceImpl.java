@@ -1,11 +1,13 @@
 package com.hm.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hm.entity.Menu;
 import com.hm.entity.User;
 import com.hm.mapper.UserMapper;
 import com.hm.service.IUserService;
@@ -33,6 +35,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 	public User findByName(String name) {
 		return userMapper.findByName(name);
 		
+	}
+
+	@Override
+	public List<Menu> findMenuById(Integer id) {
+		List<Menu> list = userMapper.findMenuById(id);
+		for (Menu menu : list) {
+			if(menu.getParentId()==null) {
+				List parentsList= new ArrayList<Menu>();
+				
+			}
+		}
+		return null;
 	}
 
 }

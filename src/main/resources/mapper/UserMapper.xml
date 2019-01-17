@@ -74,5 +74,11 @@
 		r,role_permission rp, t_permission p where u.id =ur.user_id and r.id
 		=ur.role_id and r.id =rp.role_id and rp.permission_id = p.id;
 	</select>
-
+	
+	<select id="findMenuById" parameterType="INTEGER">
+		select m.* from t_user u,user_role ur, t_role
+		r,role_permission rp, t_permission p ,t_menu m where u.id =ur.user_id and r.id
+		=ur.role_id and r.id =rp.role_id and rp.permission_id = p.id and p.id = m.id ;
+	</select>
+	
 </mapper>

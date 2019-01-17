@@ -58,7 +58,7 @@ public class ShiroRealm  extends AuthorizingRealm{
 			throw new UnknownAccountException("用户不存在");
 		}
 		if(!upToken.getPassword().equals(user.getPassword())) {
-			
+			throw new UnknownAccountException("输入错误");
 		}
 		//根据用户情况，来构建AuthenticationInfo对象并返回，一般实现类SimpleAuthenticationInfo
 		//认证实体信息，username或者对应用户实体对象 -----授权时获取当前对象

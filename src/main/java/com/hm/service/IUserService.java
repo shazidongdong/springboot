@@ -3,6 +3,7 @@ package com.hm.service;
 import java.util.List;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.hm.entity.Menu;
 import com.hm.entity.User;
 
 /**
@@ -17,4 +18,6 @@ public interface IUserService extends IService<User> {
 	public List<User> getALLUserAndRole();
 	
 	public User findByName(String name); 
+	
+	public List<Menu> findMenuById(Integer id);
 }

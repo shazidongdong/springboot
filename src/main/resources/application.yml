@@ -1,3 +1,11 @@
+boot:
+    cors:
+        addallowedheader: '*'
+        addallowedmethod: '*'
+        addallowedorigin: '*'
+
+
+
 spring:
   profiles:    active:    - dev  thymeleaf:    cache: false    prefix: classpath:/templates/
     suffix: .html
