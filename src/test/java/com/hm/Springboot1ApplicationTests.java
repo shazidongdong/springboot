@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.hm.entity.Menu;
 import com.hm.entity.Permission;
 import com.hm.entity.Role;
 import com.hm.entity.User;
@@ -70,12 +71,12 @@ public class Springboot1ApplicationTests {
 		}
 	}
 	@Test
-	public void findByInfo() {
+	public void findbyinfo() {
 		User info = UserService.findByName("admin");
 		System.out.println(info.getPassword());
 	}
 	@Test
-	public void findMenuById() {
-		UserService.findMenuById(1);
+	public void findmenuById() {
+		List<Menu> list = UserService.findMenuById(1);
 	}
 }

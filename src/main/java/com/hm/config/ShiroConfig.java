@@ -53,6 +53,7 @@ public class ShiroConfig {
 		DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
 		securityManager.setRealm(shiroRealm());
 		securityManager.setCacheManager(cacheManager());// 用户授权认证信息cache
+		securityManager.setRememberMeManager(null);
 		return securityManager;
 	}
 
@@ -61,15 +62,16 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		LinkedHashMap<String, String> filterChainDefinitionManager = new LinkedHashMap<>();
-		filterChainDefinitionManager.put("/logout", "logout");
-		filterChainDefinitionManager.put("/user/**", "authc,roles[user]");
-		filterChainDefinitionManager.put("/admin/**", "authc,roles[role0]");//authc 必须认证后访问
-		filterChainDefinitionManager.put("/login", "anon");
-		filterChainDefinitionManager.put("/getMenu", "anon");
-		filterChainDefinitionManager.put("/shiro/login", "anon");
-		filterChainDefinitionManager.put("/statistic/**", "anon");// 静态资源不拦截
-		filterChainDefinitionManager.put("/**", "authc,roles[user]");// 其他资源全部拦截
-		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
+		filterChainDefinitionManager.put("/**", "anon");
+//		filterChainDefinitionManager.put("/logout", "logout");
+//		filterChainDefinitionManager.put("/user/**", "authc,roles[user]");
+//		filterChainDefinitionManager.put("/admin/**", "authc,roles[role0]");//authc 必须认证后访问
+//		filterChainDefinitionManager.put("/login", "anon");
+//		filterChainDefinitionManager.put("/getMenu", "anon");
+//		filterChainDefinitionManager.put("/shiro/login", "anon");
+//		filterChainDefinitionManager.put("/statistic/**", "anon");// 静态资源不拦截
+//		filterChainDefinitionManager.put("/**", "authc,roles[user]");// 其他资源全部拦截
+//		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionManager);
 //		shiroFilterFactoryBean.setLoginUrl("/login");
 //		shiroFilterFactoryBean.setSuccessUrl("/list");
 //        shiroFilterFactoryBean.setUnauthorizedUrl("/login");

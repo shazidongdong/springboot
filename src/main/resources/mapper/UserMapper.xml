@@ -79,7 +79,7 @@
 	</select>
 	
 	<select id="findMenuById" parameterType="INTEGER" resultMap="menuResultMap">
-		select DISTINCT 
+		select  
 		m.id,m.menuName,m.url,parent.id pid,parent.menuName pname
 		from t_user u 
 		join user_role ur 
@@ -100,6 +100,7 @@
 	<resultMap type="com.hm.entity.Menu" id="menuResultMap">
 		<id column="pid" property="id"></id>
 		<result column="pname" property="menuName"/>
+		<result column="purl" property="url"/>
 		<collection property="children" ofType="com.hm.entity.Menu" column="parentId">
 			<id column="id" property="id"/>
 			<result column="menuName" property="menuName"/>

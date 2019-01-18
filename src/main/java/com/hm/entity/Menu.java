@@ -39,7 +39,8 @@ public class Menu implements Serializable {
 	}
     
     @Tolerate
-	public Menu(String menuName, String url, Menu parent) {
+	public Menu(Integer id,String menuName, String url, Menu parent) {
+    	this.id=id;
 		this.menuName = menuName;
 		this.url = url;
 		this.parent = parent;
@@ -47,8 +48,6 @@ public class Menu implements Serializable {
 	@TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @TableField("parentId")
-    private Integer parentId;
 
     @TableField("menuName")
     private String menuName;
